@@ -35,7 +35,7 @@ at the end. Keybindings are in [`../bindings/`](../bindings/).
   |-------|------|-----------------------------|
   | `gona-launcher` | Gona Launcher | [`../plugins/gona.launcher/config.toml`](../plugins/gona.launcher/) |
   | `omarchy-bar` | the bar | [`../shell/shell.toml`](../shell/) |
-  | `miruken-desktop` | home workspace widgets | the `miruken.desktop` plugin |
+  | `miruken1207-omagadgets` | home workspace gadgets | the omagadgets plugin |
 
 ### `hyprland.lua` — misc
 

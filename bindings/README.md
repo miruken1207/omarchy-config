@@ -39,7 +39,7 @@ Workspaces, Apps).
 |------|--------|------------------------|
 | `SUPER + grave` / `SUPER + H` | Focus the named `home` workspace | |
 | `ALT + grave` | Move window to `home` | |
-| `SUPER + ALT + grave` | Edit desktop widgets (`desktop-widgets-edit`) | |
+| `SUPER + ALT + grave` | Edit omagadgets (drag/resize the home cards) | |
 | `SUPER + J` / `SUPER + K` | Previous / next workspace (home, 1–10, empty ones too) | toggle split → `SUPER + SHIFT + J` |
 | `SUPER + scroll` | Same as `SUPER + J/K` | |
 | `ALT + J` / `ALT + K` | Move window to previous / next workspace | |
@@ -88,5 +88,5 @@ Some bindings call things that are not part of stock Omarchy:
 - Apps: `telegram-desktop`, `obsidian`, Yandex Music (`/opt/yandex-music`),
   `claude-desktop`, `happ`, `zeditor`, PyCharm via JetBrains Toolbox, `flea`.
 - Shell plugins: `gona.launcher`, `io.github.florinbaci.filmstrip`,
-  `miruken.desktop` (home workspace widgets) and `~/.local/bin/desktop-widgets-edit`.
+  `miruken1207.omagadgets` (home workspace gadgets; its edit script ships with the plugin).
 - Scripts are looked up in `~/.local/bin` (via `$HOME`), so any Linux username works.

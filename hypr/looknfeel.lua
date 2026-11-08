@@ -81,5 +81,5 @@ hl.layer_rule({ match = { namespace = "^gona-launcher$" }, blur = true, ignore_a
 -- Glass effect for the Omarchy bar: blur behind its translucent background (alpha set in ~/.config/omarchy/shell.toml).
 hl.layer_rule({ match = { namespace = "^omarchy-bar$" }, blur = true, ignore_alpha = 0.05 })
 
--- Glass effect for the home-workspace desktop widgets (miruken.desktop plugin).
-hl.layer_rule({ match = { namespace = "^miruken-desktop$" }, blur = true, ignore_alpha = 0.1 })
+-- Glass effect for the home-workspace gadgets (omagadgets plugin).
+hl.layer_rule({ match = { namespace = "^miruken1207-omagadgets$" }, blur = true, ignore_alpha = 0.1 })

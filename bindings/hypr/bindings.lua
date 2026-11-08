@@ -87,7 +87,7 @@ hl.unbind("SUPER + mouse_up")
 o.bind("SUPER + grave", "Home workspace", hl.dsp.focus({ workspace = "name:home" }))
 o.bind("SUPER + H", "Home workspace", hl.dsp.focus({ workspace = "name:home" }))
 o.bind("ALT + grave", "Move window to home workspace", hl.dsp.window.move({ workspace = "name:home" }))
-o.bind("SUPER + ALT + grave", "Edit desktop widgets", bin .. "desktop-widgets-edit")
+o.bind("SUPER + ALT + grave", "Edit omagadgets", os.getenv("HOME") .. "/.config/omarchy/plugins/miruken1207.omagadgets/omagadgets-edit")
 
 -- Step through workspaces: SUPER+J/K or SUPER+scroll focus, ALT+J/K move the window
 o.bind("SUPER + J", "Previous workspace", bin .. "workspace-step prev")

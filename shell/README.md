@@ -25,7 +25,7 @@ The full plugin list with authors and versions is in [`../plugins/`](../plugins/
   bluetooth, display, power.
 
 **Non-bar plugins:** Filmstrip, Omaland, Lock Screen Explorer (`motion` design,
-opens as a panel), `miruken.desktop`, omanum.
+opens as a panel), omagadgets, omanum.
 
 **Disabled built-ins:** `omarchy.media` (replaced by Music Flow) and
 `omarchy.lock` (replaced by Lock Screen Explorer).
@@ -59,7 +59,7 @@ one: they expect the plugin to be there already, or add it themselves.
 `shell.json` also enables two local plugins that have no git repository yet.
 `install.sh` prints `MISSING:` for them; install them by hand.
 
-- `miruken.desktop` — home-workspace widgets (moving to its own repo).
+- `miruken1207.omagadgets` — home-workspace gadgets (moving to its own repo).
 - `miruken.tray` — my clone of the built-in tray.
 
 ## Save changes
