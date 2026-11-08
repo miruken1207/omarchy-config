@@ -1,0 +1,91 @@
+# Gona Launcher: settings and tiles in one file.
+# Edit it while the launcher is closed, or use Import / Export in the settings menu (Profiles tab).
+# A value that is missing or invalid falls back to its default.
+version = 1
+
+# Where the launcher opens. mode: "" (centered), "top", "bottom", "left", "right" or "full". reduce_motion: true opens and closes it at once, with no effect or slide. effect: how it comes in, "classic" (a panel slides, full screen fades, a centered window appears at once; slide_speed is its length in ms) or an effect that works in every mode (effect_ms is its length): "fade", "slide", "meet", "corners", "blocks", "fluid", "bounce", "genie", "dissolve", "glitch", "matrix", "decrypt", "synthgrid", "spotlights", "laser", "blackhole", "fireworks", "rain", "beams" or "vhs". full_from: the side slide and meet come from. animate_close: false makes closing instant.
+[window]
+mode = "full"
+width = 900
+height = 620
+offset = 24
+slide_speed = 110
+effect = "beams"
+effect_ms = 550
+animate_close = true
+reduce_motion = false
+full_from = "top"
+next_to_bar_button = false
+
+# Per position: [width %, height %] and optionally the edge offset in px as a third number. next_to_bar_button: a panel opened from the bar button is centred on it.
+[window.panels]
+top = [100, 50]
+bottom = [100, 50]
+left = [40, 100]
+right = [40, 100]
+
+# How the tiles look. padding: the room inside a tile and around its icons, 0-24 px (0: the icons almost touch the border). buttons: when a tile shows its ＋ and ⋯ buttons, "pause" (after the pointer rests on it for a moment) or "click" (never: right-click the tile instead).
+[tiles]
+icon_size = 40
+show_names = false
+gap = 10
+padding = 14
+corner_radius = 10
+border_width = 2
+buttons = "pause"
+
+# Typing to filter, and searching every installed app.
+[search]
+all_apps = true
+show_names = true
+text_size = 14
+
+# The strip with the all-apps and power buttons. style: grid, pastel, carbon, line, line-square, circle or metro. profiles: the saved profiles (up to 5, the default included) as buttons in the strip, labelled by profile_labels: "numbers", "letters" or "roman". These two are shared by every profile.
+[buttons]
+all_apps = false
+shut_down = false
+restart = false
+log_out = false
+size = 34
+style = "line-square"
+profiles = false
+profile_labels = "numbers"
+
+# track: count the apps launched from here (kept in ~/.local/state/gona-launcher/usage.json, on this machine only). order: "name", "most_used" or "recent", for the all-apps list and the typed search and the row. show_row: a row of the apps used most (or last) above the tiles, row_count of them (3-10).
+[usage]
+track = true
+order = "most_used"
+show_row = false
+row_count = 8
+
+# mode: "dark", "light" or "auto" (follows Omarchy's own light/dark setting). follow_omarchy: use the colors of the active Omarchy theme. menu_size is the size of the settings menus in %.
+[appearance]
+mode = "auto"
+follow_omarchy = true
+menu_size = 100
+
+# Colours of each mode. A field is { v = ..., a = ... }: v is "system", "none", a palette number 0-7 or "#rrggbb"; a is the opacity 0-100.
+[colors.dark.bg]
+v = "#0b0f14"
+a = 60
+
+[colors.dark.appBg]
+v = "none"
+
+[colors.dark.menuBg]
+v = "system"
+
+[colors.light.bg]
+v = "#eff1f5"
+a = 60
+
+[colors.light.appBg]
+v = "none"
+
+# The tiles: a split (dir "h" or "v", ratio, and two halves a and b) or a leaf (the apps in it, by desktop id).
+[layout]
+type = "leaf"
+ids = ["firefox", "yandex-browser", "chromium", "YouTube", "Twitch", "Gmail", "GitHub", "Kinopoisk", "Yandex Pochta", "Yandex Disk", "Telemost", "yandexmusic", "org.telegram.desktop", "MAX", "dev.zed.Zed", "jetbrains-pycharm-78000a09-74bb-454b-a1aa-147d32a9504e", "jetbrains-goland-640cdcec-ad41-4f6a-b4e7-d8c707d55277", "com.anthropic.Claude", "Happ", "obsidian", "com.obsproject.Studio", "libreoffice-startcenter", "libreoffice-calc", "libreoffice-base", "libreoffice-draw", "com.thisisgm.flea", "Syncthing"]
+icon = 96
+centerH = true
+centerV = true

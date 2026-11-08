@@ -7,6 +7,7 @@ Each directory is self-contained, with its own `README.md`, `install.sh` and `sa
 |-----------|------|
 | [`bindings/`](bindings/) | Hyprland keybindings and the `workspace-step` script |
 | [`plugins/tornikegomareli.spaces/`](plugins/tornikegomareli.spaces/) | Patch for [Spaces](https://github.com/tornikegomareli/omarchy-spaces) by Tornike Gomareli: `home` workspace in the bar |
+| [`plugins/gona.launcher/`](plugins/gona.launcher/) | Config for [Gona Launcher](https://github.com/Mgldvd/gona-launcher) by Mgldvd: glass look, pinned tiles |
 
 ## Restore on a fresh install
 
@@ -14,8 +15,9 @@ Each directory is self-contained, with its own `README.md`, `install.sh` and `sa
 git clone git@github.com:miruken1207/omarchy-config.git ~/omarchy-config
 ~/omarchy-config/bindings/install.sh
 ~/omarchy-config/plugins/tornikegomareli.spaces/install.sh
+~/omarchy-config/plugins/gona.launcher/install.sh
 omarchy restart shell
 ```
 
-Third-party plugins are stored as patches only, next to the original
+Third-party plugins are stored as patches or config files only, next to the original
 author's license; the plugins themselves come from their upstream repositories.
