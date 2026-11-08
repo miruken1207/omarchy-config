@@ -6,10 +6,16 @@ Each directory is self-contained, with its own `README.md`, `install.sh` and `sa
 | Directory | What |
 |-----------|------|
 | [`bindings/`](bindings/) | Hyprland keybindings and the `workspace-step` script |
+| [`plugins/tornikegomareli.spaces/`](plugins/tornikegomareli.spaces/) | Patch for [Spaces](https://github.com/tornikegomareli/omarchy-spaces) by Tornike Gomareli: `home` workspace in the bar |
 
 ## Restore on a fresh install
 
 ```bash
 git clone git@github.com:miruken1207/omarchy-config.git ~/omarchy-config
 ~/omarchy-config/bindings/install.sh
+~/omarchy-config/plugins/tornikegomareli.spaces/install.sh
+omarchy restart shell
 ```
+
+Third-party plugins are stored as patches only, next to the original
+author's license; the plugins themselves come from their upstream repositories.

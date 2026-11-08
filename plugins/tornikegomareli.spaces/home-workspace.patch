@@ -1,0 +1,76 @@
+diff --git i/Model.js w/Model.js
+index 44372c7..277b836 100644
+--- i/Model.js
++++ w/Model.js
+@@ -242,7 +242,7 @@ function workspaceLabel(id, focused, style, block) {
+   if (style === "glyph" && focused) return "󱓻"
+   var local = block >= 0 && workspaceBlockOf(id) === block
+   var number = local ? workspaceSlotOf(id) : id
+-  return number === 10 ? "0" : String(number)
++  return String(number)
+ }
+ 
+ // Caps user-entered icon text at 32 graphemes, cutting without an ellipsis.
+diff --git i/Spaces.qml w/Spaces.qml
+index f273ffd..9912ee0 100644
+--- i/Spaces.qml
++++ w/Spaces.qml
+@@ -335,6 +335,16 @@ Panel {
+     return ipc && ipc["class"] ? ipc["class"] : ""
+   }
+ 
++  // Named "home" workspace (local patch): pinned first and labelled with a
++  // house. Hyprland gives named workspaces negative ids, and a fresh one each
++  // time it is recreated, so -2 stands in while it does not exist.
++  readonly property int homeId: {
++    root.revision
++    var values = Hyprland.workspaces.values
++    for (var i = 0; i < values.length; i++) if (values[i].name === "home") return values[i].id
++    return -2
++  }
++
+   // { [workspaceId]: { id, active, windows: [{ address, appId, title, focused, at }] } }
+   readonly property var workspaceMap: {
+     root.revision
+@@ -345,7 +355,7 @@ Panel {
+ 
+     for (var i = 0; i < values.length; i++) {
+       var ws = values[i]
+-      if (ws.id <= 0) continue
++      if (ws.id <= 0 && ws.name !== "home") continue
+       if (perMonitor && ws.monitor !== root.monitor) continue
+ 
+       var windows = []
+@@ -380,10 +390,14 @@ Panel {
+     var occupied = ({})
+     for (var id in workspaceMap) occupied[id] = workspaceMap[id].windows.length
+     var active = root.currentWorkspaceId > 0 ? [root.currentWorkspaceId] : []
+-    return Model.workspaceIds(occupied, active, cfg.persistentWorkspaces, cfg.hideEmpty, root.workspaceBlock)
++    return [root.homeId].concat(Model.workspaceIds(occupied, active, cfg.persistentWorkspaces, cfg.hideEmpty, root.workspaceBlock))
+   }
+ 
+   function focusWorkspace(id) {
++    if (id === root.homeId) {
++      run("hyprctl dispatch " + Util.shellQuote("hl.dsp.focus({ workspace = \"name:home\" })"))
++      return
++    }
+     if (root.workspaceBlock >= 0 && Model.workspaceBlockOf(id) === root.workspaceBlock) {
+       var expression = "o.workspaces.focus(" + Model.workspaceSlotOf(id) + ", " + JSON.stringify(root.monitor.name) + ")"
+       run("hyprctl dispatch " + Util.shellQuote(expression))
+@@ -858,6 +872,7 @@ Panel {
+         // Custom icon first; the pill keeps its number/glyph label when none
+         // is set. Held Super always shows plain numbers.
+         readonly property string label: {
++          if (workspaceId === root.homeId) return "󰋜"
+           var custom = Model.workspaceIcon(root.cfg, workspaceId, active)
+           if (custom !== "" && !root.numbersVisible) return custom
+           return Model.workspaceLabel(
+@@ -1327,7 +1342,7 @@ Panel {
+           anchors.right: previewCount.left
+           anchors.rightMargin: Style.space(8)
+           anchors.verticalCenter: parent.verticalCenter
+-          text: "Workspace " + (root.previewWorkspaceId === 10 ? "0" : root.previewWorkspaceId)
++          text: "Workspace " + root.previewWorkspaceId
+           color: root.fg
+           font.family: root.fontFamily
+           font.pixelSize: Style.font.body
