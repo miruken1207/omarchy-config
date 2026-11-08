@@ -19,5 +19,6 @@ git clone git@github.com:miruken1207/omarchy-config.git ~/omarchy-config
 omarchy restart shell
 ```
 
-Third-party plugins are stored as patches or config files only, next to the original
-author's license; the plugins themselves come from their upstream repositories.
+Third-party plugins are stored only as my patches or config files, crediting the
+original author (a patch also ships the author's license); the plugins themselves
+come from their upstream repositories.
