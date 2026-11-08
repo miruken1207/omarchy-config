@@ -1,0 +1,22 @@
+#!/bin/bash
+# Usage: workspace-step next|prev [move]
+# Step through home, 1-10 (including empty ones), wrapping around.
+# With "move", the active window is moved there and focus follows it.
+order=(home 1 2 3 4 5 6 7 8 9 10)
+current=$(hyprctl activeworkspace -j | jq -r '.name')
+index=1
+for i in "${!order[@]}"; do
+  [[ ${order[$i]} == "$current" ]] && index=$i
+done
+count=${#order[@]}
+case "$1" in
+  next) target=${order[$(( (index + 1) % count ))]} ;;
+  prev) target=${order[$(( (index + count - 1) % count ))]} ;;
+  *) exit 1 ;;
+esac
+[[ $target == home ]] && target="name:home"
+if [[ $2 == move ]]; then
+  hyprctl dispatch "hl.dsp.window.move({ workspace = \"$target\" })" >/dev/null
+else
+  hyprctl dispatch "hl.dsp.focus({ workspace = \"$target\" })" >/dev/null
+fi
