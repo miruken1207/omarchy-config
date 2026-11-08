@@ -31,7 +31,7 @@ All enabled. "Where" is the bar section (from `shell.json`), or `service` /
 | Plugin | Status | Where | Source |
 |--------|--------|-------|--------|
 | omanum `miruken1207.omanum` | enabled | service | [miruken1207/omanum](https://github.com/miruken1207/omanum), v1.1.0 `677432a` |
-| omagadgets `miruken1207.omagadgets` | enabled | service (gadgets on the `home` workspace) | v0.3.0, local repo (not on GitHub yet); moving to [miruken1207/omagadgets](https://github.com/miruken1207/omagadgets) |
+| omagadgets `miruken1207.omagadgets` | enabled | service (gadgets on the `home` workspace) | v0.3.0, [miruken1207/omagadgets](https://github.com/miruken1207/omagadgets) |
 | My System tray `miruken.tray` | enabled | bar, right | clone of built-in `omarchy.tray` with local changes, not saved yet |
 | My Workspaces `miruken.workspaces` | **disabled** | — | clone of built-in `omarchy.workspaces`; unused, replaced by Spaces |
 

@@ -56,11 +56,9 @@ one: they expect the plugin to be there already, or add it themselves.
 
 ### Not installed by this script
 
-`shell.json` also enables two local plugins that have no git repository yet.
-`install.sh` prints `MISSING:` for them; install them by hand.
-
-- `miruken1207.omagadgets` — home-workspace gadgets (moving to its own repo).
-- `miruken.tray` — my clone of the built-in tray.
+`shell.json` also enables `miruken.tray`, my clone of the built-in tray, which
+has no git repository yet. `install.sh` prints `MISSING:` for it; install it by
+hand.
 
 ## Save changes
 
