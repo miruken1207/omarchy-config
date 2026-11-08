@@ -1,0 +1,118 @@
+{
+  "bar": {
+    "centerAnchor": "omarchy.clock",
+    "layout": {
+      "center": [
+        {
+          "alwaysShow": true,
+          "id": "omarchy.indicators"
+        },
+        {
+          "autoHide": false,
+          "id": "io.github.koyphish.audio-visualizer",
+          "style": "grounded"
+        },
+        {
+          "format": "dddd HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.weather",
+          "unit": "metric"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "gona.launcher"
+        },
+        {
+          "id": "nosignal.motion-wallpaper"
+        },
+        {
+          "id": "io.github.sudoapwh.readout"
+        },
+        {
+          "id": "akshar.radio-atlas"
+        },
+        {
+          "id": "custom.media"
+        }
+      ],
+      "left": [
+        {
+          "id": "omarchy.menu"
+        },
+        {
+          "groupApps": false,
+          "iconStyle": "color",
+          "id": "tornikegomareli.spaces",
+          "labelStyle": "number",
+          "persistentWorkspaces": 10,
+          "showApps": "all",
+          "showIcons": true
+        }
+      ],
+      "right": [
+        {
+          "id": "miruken.tray"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.power"
+        }
+      ]
+    },
+    "position": "top",
+    "transparent": false
+  },
+  "cloneSourceRestores": [
+    "custom.media",
+    "io.github.sirjul1337.lock-explorer"
+  ],
+  "disabledPlugins": [
+    "omarchy.media",
+    "omarchy.lock"
+  ],
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
+  },
+  "plugins": [
+    {
+      "id": "io.github.florinbaci.filmstrip"
+    },
+    {
+      "id": "bobbynicholas.omaland"
+    },
+    {
+      "design": "motion",
+      "id": "io.github.sirjul1337.lock-explorer",
+      "openAs": "panel",
+      "tourSeen": true
+    },
+    {
+      "id": "miruken.desktop"
+    },
+    {
+      "id": "miruken1207.omanum"
+    }
+  ],
+  "version": 1
+}

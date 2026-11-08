@@ -1,0 +1,13 @@
+# Plugins referenced in shell.json, installed by install.sh with `omarchy plugin add`.
+# Format: <plugin id> <git url>
+tornikegomareli.spaces https://github.com/tornikegomareli/omarchy-spaces.git
+gona.launcher https://github.com/Mgldvd/gona-launcher.git
+io.github.koyphish.audio-visualizer https://github.com/koyPhish/omarchy-audio-visualizer.git
+nosignal.motion-wallpaper https://github.com/28allday/Motion-Wallpaper-Omarchy.git
+io.github.sudoapwh.readout https://github.com/sudoAPWH/omarchy-readout.git
+akshar.radio-atlas https://github.com/AksharP5/omarchy-radio-atlas.git
+custom.media https://github.com/Clifford-Baidoo/Omarchy-music-flow.git
+io.github.florinbaci.filmstrip https://github.com/florinbaci/omarchy-filmstrip.git
+bobbynicholas.omaland https://github.com/bobby-nicholas/omaland.git
+io.github.sirjul1337.lock-explorer https://github.com/SirJul1337/omarchy-lock-explorer.git
+miruken1207.omanum https://github.com/miruken1207/omanum.git

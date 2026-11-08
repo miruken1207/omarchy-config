@@ -1,0 +1,5 @@
+# User overrides on top of the theme's shell.toml (user keys win).
+
+[bar]
+# Glassy top bar: translucent tint, Hyprland blurs what's behind it (see hypr/looknfeel.lua).
+background-alpha = 0.45
