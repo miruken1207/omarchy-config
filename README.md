@@ -29,7 +29,9 @@ git -C ~/omarchy-config commit -am "..." && git -C ~/omarchy-config push
 
 ## Keybindings
 
-Everything below is added after the stock Omarchy bindings in `hypr/bindings.lua`.
+Personal bindings live below the stock Omarchy header in `hypr/bindings.lua`,
+grouped into the same sections as here (System, Volume & brightness, Windows,
+Workspaces, Apps).
 
 ### Workspaces
 
@@ -87,4 +89,4 @@ Some bindings call things that are not part of stock Omarchy:
   `claude-desktop`, `happ`, `zeditor`, PyCharm via JetBrains Toolbox, `flea`.
 - Shell plugins: `gona.launcher`, `io.github.florinbaci.filmstrip`,
   `miruken.desktop` (home workspace widgets) and `~/.local/bin/desktop-widgets-edit`.
-- Paths are hardcoded to `/home/miruken`, so the Linux user must be `miruken`.
+- Scripts are looked up in `~/.local/bin` (via `$HOME`), so any Linux username works.

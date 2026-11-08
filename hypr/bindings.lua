@@ -27,104 +27,103 @@
 -- o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
 -- o.bind("SUPER + H", nil, "voxtype record toggle")
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
+-- ============================================================================
+-- Personal bindings
+-- Sections: System, Volume & brightness, Windows, Workspaces, Apps.
+-- Within a section, defaults are unbound first, then keys are bound again.
+-- ============================================================================
 
--- Omarchy menu on SUPER+M, keyboard layout switching on SUPER+SPACE.
-hl.unbind("SUPER + SPACE")
+local bin = os.getenv("HOME") .. "/.local/bin/"
+
+-- ---------------------------------------------------------------------------
+-- System
+-- ---------------------------------------------------------------------------
+
+hl.unbind("SUPER + SPACE") -- was: launcher
+hl.unbind("SUPER + L")     -- was: toggle workspace layout (now SUPER+SHIFT+L)
+hl.unbind("SUPER + TAB")   -- was: next workspace
+
 o.bind("SUPER + M", "Omarchy menu", "omarchy-menu toggle")
 o.bind("SUPER + SPACE", "Switch keyboard layout", "hyprctl switchxkblayout all next")
-
--- Workspace layout toggle (dwindle/scrolling) moved from SUPER+L to SUPER+SHIFT+L.
-hl.unbind("SUPER + L")
-o.bind("SUPER + SHIFT + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
-
--- Keybindings list on SUPER+L (SUPER+K still works too).
 o.bind("SUPER + L", "Keybindings", "omarchy-menu-keybindings")
+o.bind("SUPER + TAB", "Gona Launcher", "omarchy-shell shell toggle gona.launcher")
+o.bind("SUPER + A", "Filmstrip", "omarchy-shell shell toggle io.github.florinbaci.filmstrip")
 
--- Named "home" workspace (desktop widgets live there), shown first in the bar.
+-- ---------------------------------------------------------------------------
+-- Volume & brightness (ALT + = - ] [; keycodes so they also work on the ru layout)
+-- ---------------------------------------------------------------------------
+
+o.bind("ALT + EQUAL", "Volume up", "omarchy-audio-output-volume raise", { locked = true, repeating = true })
+o.bind("ALT + MINUS", "Volume down", "omarchy-audio-output-volume lower", { locked = true, repeating = true })
+o.bind("ALT + code:35", "Brightness up", "omarchy-brightness-display +5%", { locked = true, repeating = true })
+o.bind("ALT + code:34", "Brightness down", "omarchy-brightness-display 5%-", { locked = true, repeating = true })
+
+-- ---------------------------------------------------------------------------
+-- Windows
+-- ---------------------------------------------------------------------------
+
+hl.unbind("SUPER + F")         -- was: full screen (swapped with SUPER+ALT+F)
+hl.unbind("SUPER + ALT + F")   -- was: full width
+hl.unbind("SUPER + SHIFT + O") -- was: Obsidian (now SUPER+O)
+
+o.bind("SUPER + F", "Full width", hl.dsp.window.fullscreen({ mode = "maximized" }))
+o.bind("SUPER + ALT + F", "Full screen", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+o.bind("SUPER + SHIFT + T", "Toggle window floating/tiling", hl.dsp.window.float({ action = "toggle" })) -- was SUPER+T
+o.bind("SUPER + SHIFT + O", "Pop window out (float & pin)", "omarchy-hyprland-window-pop")             -- was SUPER+O
+o.bind("SUPER + SHIFT + J", "Toggle window split", hl.dsp.layout("togglesplit"))                        -- was SUPER+J
+
+-- ---------------------------------------------------------------------------
+-- Workspaces
+-- Named "home" workspace (desktop widgets) comes before 1; workspace-step
+-- cycles home, 1..10 including empty ones.
+-- ---------------------------------------------------------------------------
+
+hl.unbind("SUPER + J") -- was: toggle split (now SUPER+SHIFT+J)
+hl.unbind("SUPER + K") -- was: keybindings (now SUPER+L)
+hl.unbind("SUPER + mouse_down")
+hl.unbind("SUPER + mouse_up")
+
+-- Home
 o.bind("SUPER + grave", "Home workspace", hl.dsp.focus({ workspace = "name:home" }))
 o.bind("SUPER + H", "Home workspace", hl.dsp.focus({ workspace = "name:home" }))
 o.bind("ALT + grave", "Move window to home workspace", hl.dsp.window.move({ workspace = "name:home" }))
-o.bind("SUPER + ALT + grave", "Edit desktop widgets", "/home/miruken/.local/bin/desktop-widgets-edit")
+o.bind("SUPER + ALT + grave", "Edit desktop widgets", bin .. "desktop-widgets-edit")
 
--- Step through home + workspaces 1-10 (including empty ones): SUPER+J previous, SUPER+K next.
-hl.unbind("SUPER + J")
-hl.unbind("SUPER + K")
-o.bind("SUPER + J", "Previous workspace", "/home/miruken/.local/bin/workspace-step prev")
-o.bind("SUPER + K", "Next workspace", "/home/miruken/.local/bin/workspace-step next")
+-- Step through workspaces: SUPER+J/K or SUPER+scroll focus, ALT+J/K move the window
+o.bind("SUPER + J", "Previous workspace", bin .. "workspace-step prev")
+o.bind("SUPER + K", "Next workspace", bin .. "workspace-step next")
+o.bind("SUPER + mouse_up", "Previous workspace", bin .. "workspace-step prev")
+o.bind("SUPER + mouse_down", "Next workspace", bin .. "workspace-step next")
+o.bind("ALT + J", "Move window to previous workspace", bin .. "workspace-step prev move")
+o.bind("ALT + K", "Move window to next workspace", bin .. "workspace-step next move")
 
--- Toggle window split moved from SUPER+J to SUPER+SHIFT+J.
-o.bind("SUPER + SHIFT + J", "Toggle window split", hl.dsp.layout("togglesplit"))
-
--- Move the active window through workspaces 1-10: ALT+J previous, ALT+K next.
-o.bind("ALT + J", "Move window to previous workspace", "/home/miruken/.local/bin/workspace-step prev move")
-o.bind("ALT + K", "Move window to next workspace", "/home/miruken/.local/bin/workspace-step next move")
-
--- Swap SUPER+F (was full screen) and SUPER+ALT+F (was full width).
-hl.unbind("SUPER + F")
-hl.unbind("SUPER + ALT + F")
-o.bind("SUPER + F", "Full width", hl.dsp.window.fullscreen({ mode = "maximized" }))
-o.bind("SUPER + ALT + F", "Full screen", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
-
--- Yandex Music on SUPER+SHIFT+Y (replaces the YouTube web app binding).
-hl.unbind("SUPER + SHIFT + Y")
-o.bind("SUPER + SHIFT + Y", "Yandex Music", { launch = "/opt/yandex-music/yandexmusic --gtk-version=3" })
-
--- Move window to workspace N (focus follows): moved from SUPER+SHIFT+N to ALT+N.
+-- Move window to workspace N (focus follows): ALT+N instead of SUPER+SHIFT+N
 for workspace = 1, 10 do
   local key = "code:" .. tostring(workspace + 9)
   hl.unbind("SUPER + SHIFT + " .. key)
   o.bind("ALT + " .. key, "Move window to workspace " .. workspace, hl.dsp.window.move({ workspace = tostring(workspace) }))
 end
 
--- SUPER+scroll steps through workspaces 1-10 including empty ones (same as SUPER+J/K).
-hl.unbind("SUPER + mouse_down")
-hl.unbind("SUPER + mouse_up")
-o.bind("SUPER + mouse_down", "Next workspace", "/home/miruken/.local/bin/workspace-step next")
-o.bind("SUPER + mouse_up", "Previous workspace", "/home/miruken/.local/bin/workspace-step prev")
+o.bind("SUPER + SHIFT + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle") -- was SUPER+L
 
-o.bind("SUPER + A", "Filmstrip", "omarchy-shell shell toggle io.github.florinbaci.filmstrip")
+-- ---------------------------------------------------------------------------
+-- Apps
+-- ---------------------------------------------------------------------------
 
--- Telegram on SUPER+T; floating/tiling toggle moved to SUPER+SHIFT+T.
-hl.unbind("SUPER + T")
-o.bind("SUPER + T", "Telegram", { launch = "telegram-desktop" })
-o.bind("SUPER + SHIFT + T", "Toggle window floating/tiling", hl.dsp.window.float({ action = "toggle" }))
-
--- YouTube web app on SUPER+Y.
+hl.unbind("SUPER + T")         -- was: toggle floating (now SUPER+SHIFT+T)
+hl.unbind("SUPER + O")         -- was: pop window out (now SUPER+SHIFT+O)
 hl.unbind("SUPER + Y")
-o.bind("SUPER + Y", "YouTube", { launch = "omarchy-launch-webapp https://www.youtube.com/" })
+hl.unbind("SUPER + SHIFT + Y") -- was: YouTube
+hl.unbind("SUPER + SHIFT + C") -- was: Calendar
+hl.unbind("SUPER + SHIFT + P") -- was: Google Photos
+hl.unbind("SUPER + SHIFT + F") -- was: Nautilus
 
--- Obsidian on SUPER+O; "pop window out" moved to SUPER+SHIFT+O.
-hl.unbind("SUPER + O")
-hl.unbind("SUPER + SHIFT + O")
+o.bind("SUPER + T", "Telegram", { launch = "telegram-desktop" })
 o.bind("SUPER + O", "Obsidian", { launch = "obsidian", focus = "^obsidian$" })
-o.bind("SUPER + SHIFT + O", "Pop window out (float & pin)", "omarchy-hyprland-window-pop")
-
--- Claude Desktop on SUPER+SHIFT+C (replaces Calendar).
-hl.unbind("SUPER + SHIFT + C")
+o.bind("SUPER + Y", "YouTube", { launch = "omarchy-launch-webapp https://www.youtube.com/" })
+o.bind("SUPER + SHIFT + Y", "Yandex Music", { launch = "/opt/yandex-music/yandexmusic --gtk-version=3" })
 o.bind("SUPER + SHIFT + C", "Claude", { launch = "claude-desktop", focus = "^com\\.anthropic\\.Claude$" })
-
--- Happ (xray VPN client) on SUPER+SHIFT+H.
 o.bind("SUPER + SHIFT + H", "Happ", { launch = "happ" })
-
--- Zed editor on SUPER+SHIFT+Z.
 o.bind("SUPER + SHIFT + Z", "Zed", { launch = "zeditor", focus = "^dev\\.zed\\.Zed$" })
-
--- PyCharm on SUPER+SHIFT+P (replaces Google Photos).
-hl.unbind("SUPER + SHIFT + P")
-o.bind("SUPER + SHIFT + P", "PyCharm", { launch = "/home/miruken/.local/share/JetBrains/Toolbox/scripts/pycharm", focus = "^jetbrains-pycharm$" })
-
--- Flea file manager on SUPER+SHIFT+F (replaces Nautilus).
-hl.unbind("SUPER + SHIFT + F")
+o.bind("SUPER + SHIFT + P", "PyCharm", { launch = os.getenv("HOME") .. "/.local/share/JetBrains/Toolbox/scripts/pycharm", focus = "^jetbrains-pycharm$" })
 o.bind("SUPER + SHIFT + F", "File manager", { launch = "flea --gui" })
-
--- Gona Launcher on SUPER+TAB (replaces Next workspace; was Super alone).
-hl.unbind("SUPER + TAB")
-o.bind("SUPER + TAB", "Gona Launcher", "omarchy-shell shell toggle gona.launcher")
-
--- Volume on ALT+= (up) and ALT+- (down).
-o.bind("ALT + EQUAL", "Volume up", "omarchy-audio-output-volume raise", { locked = true, repeating = true })
-o.bind("ALT + MINUS", "Volume down", "omarchy-audio-output-volume lower", { locked = true, repeating = true })
-
--- Brightness on ALT+] (up) and ALT+[ (down). Keycodes so they also work on the ru layout.
-o.bind("ALT + code:35", "Brightness up", "omarchy-brightness-display +5%", { locked = true, repeating = true })
-o.bind("ALT + code:34", "Brightness down", "omarchy-brightness-display 5%-", { locked = true, repeating = true })
